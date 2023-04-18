@@ -5,12 +5,17 @@
 string userInput = GetUserInput();
 string[] arr = MakeArrayFromString(CountWords(userInput), userInput);
 PrintArray(arr);
-//Console.WriteLine($"There are {FindMoreThanZero(arr)} elements, greater, than 0");
+PrintArray(MakeNewArray(arr));
 
 string GetUserInput()
 {
     Console.Write($"Please enter words or symbols, separated by SPACE: ");
     string txtInput = Console.ReadLine();
+    while(txtInput == null)
+    {
+        Console.WriteLine("Please enter at least some symbols");
+        txtInput = Console.ReadLine();
+    }
     return txtInput;
 }
 
@@ -54,12 +59,29 @@ string[] MakeArrayFromString(int lenght, string input)
     return array;
 }
 
-int FindMoreThanZero(int[] array)
+// Method below makes new array from elements, that have 3 or less symbols
+string[] MakeNewArray(string[] array)
+{
+    string[] newArray = new string[CountThreeSymbolWords(array)];
+    int j = 0;
+
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (array[i].Length < 4)
+        {
+            newArray[j] = array[i];
+            j++;
+        }
+    }
+    return newArray;
+}
+
+int CountThreeSymbolWords(string[] array)
 {
     int count = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if (array[i] > 0)
+        if (array[i].Length < 4)
         {
             count++;
         }
