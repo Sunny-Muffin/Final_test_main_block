@@ -10,11 +10,11 @@ PrintArray(MakeNewArray(arr));
 string GetUserInput()
 {
     Console.Write($"Please enter words or symbols, separated by SPACE: ");
-    string txtInput = Console.ReadLine();
+    string txtInput = Console.ReadLine()!;
     while(txtInput == null)
     {
         Console.WriteLine("Please enter at least some symbols: ");
-        txtInput = Console.ReadLine();
+        txtInput = Console.ReadLine()!;
     }
     return txtInput;
 }
